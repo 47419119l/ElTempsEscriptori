@@ -22,8 +22,8 @@ public class OpenWeatherMap {
     /**
      * Arrays amb la informació que pot tenir cada un dels dias
      */
-    public ArrayList<String> tempMin = new ArrayList<>();
-    public ArrayList<String> tempMax = new ArrayList<>();
+    public ArrayList<Double> tempMin = new ArrayList<>();
+    public ArrayList<Double> tempMax = new ArrayList<>();
     public ArrayList<String>presion=new ArrayList<String>();
     public ArrayList<Double>velVent=new ArrayList<Double>();
     public ArrayList<String>dirVent=new ArrayList<String>();
@@ -32,6 +32,8 @@ public class OpenWeatherMap {
     public ArrayList<String>dia=new ArrayList<String>();
     public ArrayList<String> iconid=new ArrayList<String>();
     public ArrayList<String> estado = new ArrayList<String>();
+    double mitjanatemp;
+
 
     /**
      *
@@ -43,6 +45,9 @@ public class OpenWeatherMap {
      */
     public void refresh(ObservableList list, String ciutat) throws ParserConfigurationException, IOException, SAXException {
         String text;
+        /*
+        URL serveix per extreure la informació directament de una URL
+         */
         URL xmlURL = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q="+ciutat+",es&lang=sp&mode=xml&APPID=720f431ee254e6c38e84787031900368");
         InputStream InputFile = xmlURL.openStream();
         /*
@@ -53,15 +58,16 @@ public class OpenWeatherMap {
         Document doc = db.parse(InputFile);
         doc.getDocumentElement().normalize();
         NodeList nl = doc.getElementsByTagName("time");
-        DecimalFormat decimales = new DecimalFormat("0.00");
+        DecimalFormat decimales = new DecimalFormat(",00");
+
         for (int temp =0; temp<nl.getLength();temp++){
             Element temps = (Element) nl.item(temp);
             /**
              * Omplim les arrays amb a diferent informació que té cadascun dels dies.
              */
 
-            tempMax.add(decimales.format(Double.parseDouble(temps.getElementsByTagName("temperature").item(0).getAttributes().getNamedItem("max").getNodeValue()) -273.15));
-            tempMin.add(decimales.format(Double.parseDouble(temps.getElementsByTagName("temperature").item(0).getAttributes().getNamedItem("min").getNodeValue())-273.15));
+            tempMax.add(Double.parseDouble(decimales.format(Double.parseDouble(temps.getElementsByTagName("temperature").item(0).getAttributes().getNamedItem("max").getNodeValue()) -273.15)));
+            tempMin.add(Double.parseDouble(decimales.format(Double.parseDouble(temps.getElementsByTagName("temperature").item(0).getAttributes().getNamedItem("min").getNodeValue())-273.15)));
             velVent.add(Double.parseDouble(temps.getElementsByTagName("windSpeed").item(0).getAttributes().getNamedItem("mps").getNodeValue()));
             humidad.add(temps.getElementsByTagName("humidity").item(0).getAttributes().getNamedItem("value").getNodeValue()+" "+temps.getElementsByTagName("humidity").item(0).getAttributes().getNamedItem("unit").getNodeValue());
             presion.add(temps.getElementsByTagName("pressure").item(0).getAttributes().getNamedItem("value").getNodeValue()+" "+temps.getElementsByTagName("pressure").item(0).getAttributes().getNamedItem("unit").getNodeValue());
@@ -81,13 +87,15 @@ public class OpenWeatherMap {
             }
             text=text+" - Temperatura Máxixma :  "+tempMax.get(temp)+ "\n - Temperatura Minima : "+ String.format("%s\n", tempMin.get(temp));
             text=text+" - Estado  :  " + temps.getElementsByTagName("symbol").item(0).getAttributes().getNamedItem("name").getNodeValue()+"\n\n";
+
             /*
-            Omplim directaent el ListView
+            Omplim directament el ListView
              */
             list.add(text);
 
         }
 
     }
+
 
 }

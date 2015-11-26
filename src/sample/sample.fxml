@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <children>
     <MenuBar prefHeight="29.0" prefWidth="276.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
       <menus>
@@ -24,10 +24,10 @@
         </Menu>
       </menus>
     </MenuBar>
-    <ToolBar layoutY="30.0" prefHeight="78.0" prefWidth="515.0">
+    <ToolBar layoutY="30.0" prefHeight="78.0" prefWidth="596.0">
         <items>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ciutat:" />
-            <MenuButton fx:id="ciutats" mnemonicParsing="false" onAction="#menu" text="Barcelona">
+            <MenuButton fx:id="ciutats" mnemonicParsing="false" onAction="#menu" text="Barcelona" >
                <items>
                   <CheckMenuItem fx:id="bcn" mnemonicParsing="false" onAction="#menu" text="Barcelona" />
                   <CheckMenuItem fx:id="sbd" mnemonicParsing="false" onAction="#menu" text="Sabadell" />
@@ -45,32 +45,42 @@
             </graphic>
 
           </Button>
+            <Button fx:id="graf" mnemonicParsing="false" text="grafico" onAction="#graf">
+                    <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="graf.png" />
+
+                            </image>
+                        </ImageView>
+                    </graphic>
+            </Button>
         </items>
       </ToolBar>
-      <TabPane layoutX="1.0" layoutY="108.0" prefHeight="368.0" prefWidth="515.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="1.0" layoutY="108.0" prefHeight="368.0" prefWidth="596.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Tots els dias">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                          <ListView fx:id="list" prefHeight="336.0" prefWidth="254.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="0.0" />
-                        <ImageView fx:id="icondia" fitHeight="59.0" fitWidth="70.0" layoutX="262.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="tempdia" fontSmoothingType="LCD" layoutX="369.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="25">
+                        <ImageView fx:id="icondia" fitHeight="59.0" fitWidth="70.0" layoutX="350.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="tempdia" fontSmoothingType="LCD" layoutX="457.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="25">
                            <font>
                               <Font size="34.0" />
                            </font>
                         </Text>
-                        <Text fx:id="lbldema" layoutX="265.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mañana:" wrappingWidth="152.287109375" />
-                        <Text fx:id="lvlavui" layoutX="264.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hoy:" />
-                        <ImageView fx:id="icondema" fitHeight="59.0" fitWidth="70.0" layoutX="262.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="tempdema" fontSmoothingType="LCD" layoutX="369.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="25">
+                        <Text fx:id="lbldema" layoutX="353.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mañana:" wrappingWidth="152.287109375" />
+                        <Text fx:id="lvlavui" layoutX="352.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hoy:" />
+                        <ImageView fx:id="icondema" fitHeight="59.0" fitWidth="70.0" layoutX="350.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="tempdema" fontSmoothingType="LCD" layoutX="457.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="25">
                            <font>
                               <Font size="34.0" />
                            </font>
                         </Text>
-                        <Text fx:id="lvldemp" layoutX="266.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pasado" wrappingWidth="152.287109375" />
-                        <ImageView fx:id="icondemp" fitHeight="59.0" fitWidth="70.0" layoutX="263.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="tempdemp" fontSmoothingType="LCD" layoutX="370.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="25">
+                        <Text fx:id="lvldemp" layoutX="354.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pasado" wrappingWidth="152.287109375" />
+                        <ImageView fx:id="icondemp" fitHeight="59.0" fitWidth="70.0" layoutX="351.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="tempdemp" fontSmoothingType="LCD" layoutX="458.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="25">
                            <font>
                               <Font size="34.0" />
                            </font>
@@ -85,10 +95,10 @@
                         <ImageView fx:id="icon0" fitHeight="96.0" fitWidth="102.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="tempmin0" layoutX="130.0" layoutY="23.0" text="Temperatura minima" />
                         <Label fx:id="pres0" layoutX="129.0" layoutY="54.0" text="Pressión" />
-                        <Label fx:id="tempmax0" layoutX="326.0" layoutY="23.0" text="Temperatura maxima" />
-                        <Label fx:id="hum0" layoutX="323.0" layoutY="54.0" text="Humedad" />
+                        <Label fx:id="tempmax0" layoutX="364.0" layoutY="23.0" text="Temperatura maxima" />
+                        <Label fx:id="hum0" layoutX="371.0" layoutY="54.0" text="Humedad" />
                         <Label fx:id="dirvent0" layoutX="130.0" layoutY="86.0" text="Direccion viento" />
-                        <Label fx:id="velvent0" layoutX="323.0" layoutY="86.0" text="Velocidad viento" />
+                        <Label fx:id="velvent0" layoutX="371.0" layoutY="86.0" text="Velocidad viento" />
                      </children>
                      </AnchorPane>
                </content>
@@ -100,10 +110,10 @@
                         <ImageView fx:id="icon1" fitHeight="96.0" fitWidth="102.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="tempmin1" layoutX="130.0" layoutY="23.0" text="Temperatura minima" />
                         <Label fx:id="pres1" layoutX="129.0" layoutY="54.0" text="Pressión" />
-                        <Label fx:id="tempmax1" layoutX="326.0" layoutY="23.0" text="Temperatura maxima" />
-                        <Label fx:id="hum1" layoutX="323.0" layoutY="54.0" text="Humedad" />
+                        <Label fx:id="tempmax1" layoutX="356.0" layoutY="23.0" text="Temperatura maxima" />
+                        <Label fx:id="hum1" layoutX="363.0" layoutY="54.0" text="Humedad" />
                         <Label fx:id="dirvent1" layoutX="130.0" layoutY="86.0" text="Direccion viento" />
-                        <Label fx:id="velvent1" layoutX="323.0" layoutY="86.0" text="Velocidad viento" />
+                        <Label fx:id="velvent1" layoutX="363.0" layoutY="86.0" text="Velocidad viento" />
                      </children>
                   </AnchorPane>
                </content>
@@ -115,10 +125,10 @@
                         <ImageView fx:id="icon2" fitHeight="96.0" fitWidth="102.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="tempmin2" layoutX="130.0" layoutY="23.0" text="Temperatura minima" />
                         <Label fx:id="pres2" layoutX="129.0" layoutY="54.0" text="Pressión" />
-                        <Label fx:id="tempmax2" layoutX="326.0" layoutY="23.0" text="Temperatura maxima" />
-                        <Label fx:id="hum2" layoutX="323.0" layoutY="54.0" text="Humedad" />
+                        <Label fx:id="tempmax2" layoutX="370.0" layoutY="23.0" text="Temperatura maxima" />
+                        <Label fx:id="hum2" layoutX="377.0" layoutY="54.0" text="Humedad" />
                         <Label fx:id="dirvent2" layoutX="130.0" layoutY="86.0" text="Direccion viento" />
-                        <Label fx:id="velvent2" layoutX="323.0" layoutY="86.0" text="Velocidad viento" />
+                        <Label fx:id="velvent2" layoutX="377.0" layoutY="86.0" text="Velocidad viento" />
                      </children>
                   </AnchorPane>
                </content>
@@ -130,10 +140,10 @@
                         <ImageView fx:id="icon3" fitHeight="96.0" fitWidth="102.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="tempmin3" layoutX="130.0" layoutY="23.0" text="Temperatura minima" />
                         <Label fx:id="pres3" layoutX="129.0" layoutY="54.0" text="Pressión" />
-                        <Label fx:id="tempmax3" layoutX="326.0" layoutY="23.0" text="Temperatura maxima" />
-                        <Label fx:id="hum3" layoutX="323.0" layoutY="54.0" text="Humedad" />
+                        <Label fx:id="tempmax3" layoutX="359.0" layoutY="23.0" text="Temperatura maxima" />
+                        <Label fx:id="hum3" layoutX="366.0" layoutY="54.0" text="Humedad" />
                         <Label fx:id="dirvent3" layoutX="130.0" layoutY="86.0" text="Direccion viento" />
-                        <Label fx:id="velvent3" layoutX="323.0" layoutY="86.0" text="Velocidad viento" />
+                        <Label fx:id="velvent3" layoutX="366.0" layoutY="86.0" text="Velocidad viento" />
                      </children>
                   </AnchorPane>
                </content>
@@ -145,10 +155,10 @@
                         <ImageView fx:id="icon4" fitHeight="96.0" fitWidth="102.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="tempmin4" layoutX="130.0" layoutY="23.0" text="Temperatura minima" />
                         <Label fx:id="pres4" layoutX="129.0" layoutY="54.0" text="Pressión" />
-                        <Label fx:id="tempmax4" layoutX="326.0" layoutY="23.0" text="Temperatura maxima" />
-                        <Label fx:id="hum4" layoutX="323.0" layoutY="54.0" text="Humedad" />
+                        <Label fx:id="tempmax4" layoutX="346.0" layoutY="23.0" text="Temperatura maxima" />
+                        <Label fx:id="hum4" layoutX="353.0" layoutY="54.0" text="Humedad" />
                         <Label fx:id="dirvent4" layoutX="130.0" layoutY="86.0" text="Direccion viento" />
-                        <Label fx:id="velvent4" layoutX="323.0" layoutY="86.0" text="Velocidad viento" />
+                        <Label fx:id="velvent4" layoutX="353.0" layoutY="86.0" text="Velocidad viento" />
                      </children>
                   </AnchorPane>
                </content>
@@ -160,10 +170,10 @@
                         <ImageView fx:id="icon5" fitHeight="96.0" fitWidth="102.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="tempmin5" layoutX="130.0" layoutY="23.0" text="Temperatura minima" />
                         <Label fx:id="pres5" layoutX="129.0" layoutY="54.0" text="Pressión" />
-                        <Label fx:id="tempmax5" layoutX="326.0" layoutY="23.0" text="Temperatura maxima" />
-                        <Label fx:id="hum5" layoutX="323.0" layoutY="54.0" text="Humedad" />
+                        <Label fx:id="tempmax5" layoutX="354.0" layoutY="23.0" text="Temperatura maxima" />
+                        <Label fx:id="hum5" layoutX="361.0" layoutY="54.0" text="Humedad" />
                         <Label fx:id="dirvent5" layoutX="130.0" layoutY="86.0" text="Direccion viento" />
-                        <Label fx:id="velvent5" layoutX="323.0" layoutY="86.0" text="Velocidad viento" />
+                        <Label fx:id="velvent5" layoutX="361.0" layoutY="86.0" text="Velocidad viento" />
                      </children>
                   </AnchorPane>
                </content>
@@ -175,10 +185,10 @@
                         <ImageView fx:id="icon6" fitHeight="96.0" fitWidth="102.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="tempmin6" layoutX="130.0" layoutY="23.0" text="Temperatura minima" />
                         <Label fx:id="pres6" layoutX="129.0" layoutY="54.0" text="Pressión" />
-                        <Label fx:id="tempmax6" layoutX="326.0" layoutY="23.0" text="Temperatura maxima" />
-                        <Label fx:id="hum6" layoutX="323.0" layoutY="54.0" text="Humedad" />
+                        <Label fx:id="tempmax6" layoutX="350.0" layoutY="23.0" text="Temperatura maxima" />
+                        <Label fx:id="hum6" layoutX="357.0" layoutY="54.0" text="Humedad" />
                         <Label fx:id="dirvent6" layoutX="130.0" layoutY="86.0" text="Direccion viento" />
-                        <Label fx:id="velvent6" layoutX="323.0" layoutY="86.0" text="Velocidad viento" />
+                        <Label fx:id="velvent6" layoutX="357.0" layoutY="86.0" text="Velocidad viento" />
                      </children>
                   </AnchorPane>
                </content>

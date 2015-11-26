@@ -6,32 +6,29 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+
+
 
 
 public class Controller {
+
     String ciutatSel;
     @FXML
     ListView list = new ListView();
-    ArrayList lista;
     @FXML
     MenuButton ciutats;
-    @FXML
-    ImageView icon;
     @FXML
     CheckMenuItem bcn;
     @FXML
@@ -52,10 +49,7 @@ public class Controller {
     @FXML
     Tab dia, dia1, dia2, dia3, dia4, dia5, dia6;
     @FXML
-    Text tempdia,tempdema,tempdemp;
-    @FXML
-    LineChart graftemp;
-
+    Text tempdia,tempdema,tempdemp,lvldemp;
     OpenWeatherMap temps;
     Image image;
 
@@ -69,6 +63,7 @@ public class Controller {
     }
 
     /**
+     *Metode que mostra la informació de l'aplicació
      * @param actionEvent
      */
     public void about(ActionEvent actionEvent) {
@@ -79,6 +74,12 @@ public class Controller {
         alert.showAndWait();
     }
 
+    /**
+     *Funció que s'executa al iniciar l'aplicació
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
     public void initialize() throws IOException, SAXException, ParserConfigurationException {
         /**
          * Per defecte cridem a la funció refresh que per defecte ens mostra la informació de la la ciutat
@@ -87,6 +88,12 @@ public class Controller {
         refresh();
     }
 
+    /**
+     *
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
     public void refresh() throws IOException, SAXException, ParserConfigurationException {
         /**
          * Omplim el ListView amb la informacó de tota la setmana.
@@ -97,12 +104,14 @@ public class Controller {
         ciutatSel = ciutats.getText();
         temps.refresh(items, ciutatSel);
         list.setItems(items);
-        omplirImatge(0,icondia);
+        omplirImatge(0, icondia);
         omplirImatge(1,icondema);
-        omplirImatge(2,icondemp);
-        tempdia.setText(temps.tempMax.get(0)+"º");
+        omplirImatge(2, icondemp);
+        tempdia.setText(temps.tempMax.get(0) + "º");
         tempdema.setText(temps.tempMax.get(1)+"º");
         tempdemp.setText(temps.tempMax.get(2)+"º");
+        lvldemp.setText(temps.dia.get(3));
+
 
         /**
          * Omplim totes les pestanyes del PanelTab.
@@ -166,7 +175,15 @@ public class Controller {
         tempmin0.setText("Temperatura minima :  " + temps.tempMin.get(i).toString());
         velvent0.setText("Velocidad viento :  " + temps.velVent.get(i).toString() + " mps");
         dirvent0.setText("Dirección viento :  " + temps.dirVent.get(i));
+
     }
+
+    /**
+     *Funció per omplir amb un image un ImageView.
+     * @param i
+     * @param icon0
+     */
+
     public void omplirImatge(int i, ImageView icon0){
 
         image = new Image(temps.iconid.get(i));
@@ -174,7 +191,55 @@ public class Controller {
         icon0.setPreserveRatio(true);
         icon0.setSmooth(true);
         icon0.setCache(true);
+
     }
 
 
+    public void graf(ActionEvent actionEvent) {
+
+            Stage stage = new Stage();
+            stage.setTitle("Temperaturas de la semana");
+            //defining the axes
+            final NumberAxis xAxis = new NumberAxis();
+            final NumberAxis yAxis = new NumberAxis();
+            xAxis.setLabel("");
+            //creating the chart
+            final LineChart<Number,Number> lineChart =
+                    new LineChart<Number,Number>(xAxis,yAxis);
+
+            lineChart.setTitle("Temperaturas");
+            //defining a series
+            XYChart.Series series = new XYChart.Series();
+            series.setName("Temperaturas máximas");
+
+
+            series.getData().add(new XYChart.Data(1,temps.tempMax.get(0)));
+            series.getData().add(new XYChart.Data(2, temps.tempMax.get(1)));
+            series.getData().add(new XYChart.Data(3, temps.tempMax.get(2)));
+            series.getData().add(new XYChart.Data(4, temps.tempMax.get(3)));
+            series.getData().add(new XYChart.Data(5, temps.tempMax.get(4)));
+            series.getData().add(new XYChart.Data(6, temps.tempMax.get(5)));
+            series.getData().add(new XYChart.Data(7, temps.tempMax.get(6)));
+
+
+        
+            XYChart.Series series2 = new XYChart.Series();
+            series2.setName("Temperaturas mínimas");
+
+
+            series2.getData().add(new XYChart.Data(1,temps.tempMin.get(0)));
+            series2.getData().add(new XYChart.Data(2, temps.tempMin.get(1)));
+            series2.getData().add(new XYChart.Data(3, temps.tempMin.get(2)));
+            series2.getData().add(new XYChart.Data(4, temps.tempMin.get(3)));
+            series2.getData().add(new XYChart.Data(5, temps.tempMin.get(4)));
+            series2.getData().add(new XYChart.Data(6, temps.tempMin.get(5)));
+            series2.getData().add(new XYChart.Data(7, temps.tempMin.get(6)));
+
+            lineChart.getData().addAll(series,series2);
+
+            Scene scene  = new Scene(lineChart,800,600);
+            stage.setScene(scene);
+            stage.show();
+
+    }
 }
