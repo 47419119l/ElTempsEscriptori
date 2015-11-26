@@ -130,7 +130,7 @@ public class Controller {
      *
      * @param actionEvent
      */
-    public void menu(ActionEvent actionEvent) {
+    public void menu(ActionEvent actionEvent) throws ParserConfigurationException, SAXException, IOException {
         bcn.setSelected(false);
         bdln.setSelected(false);
         grn.setSelected(false);
@@ -139,15 +139,19 @@ public class Controller {
         if (actionEvent.getSource().equals(bcn)) {
             bcn.setSelected(true);
             ciutats.setText(bcn.getText());
+            refresh();
         } else if (actionEvent.getSource().equals(sbd)) {
             sbd.setSelected(true);
             ciutats.setText(sbd.getText());
+            refresh();
         } else if (actionEvent.getSource().equals(grn)) {
             grn.setSelected(true);
             ciutats.setText(grn.getText());
+            refresh();
         } else {
             bdln.setSelected(true);
             ciutats.setText(bdln.getText());
+            refresh();
         }
     }
 
@@ -198,7 +202,7 @@ public class Controller {
     public void graf(ActionEvent actionEvent) {
 
             Stage stage = new Stage();
-            stage.setTitle("Temperaturas de la semana");
+            stage.setTitle("Temperaturas a "+ciutatSel);
             //defining the axes
             final NumberAxis xAxis = new NumberAxis();
             final NumberAxis yAxis = new NumberAxis();
@@ -222,7 +226,7 @@ public class Controller {
             series.getData().add(new XYChart.Data(7, temps.tempMax.get(6)));
 
 
-        
+
             XYChart.Series series2 = new XYChart.Series();
             series2.setName("Temperaturas mínimas");
 

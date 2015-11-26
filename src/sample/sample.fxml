@@ -35,16 +35,6 @@
                   <CheckMenuItem fx:id="grn" mnemonicParsing="false" onAction="#menu" text="Girona" />
                </items>
             </MenuButton>
-          <Button mnemonicParsing="false" onAction="#refresh">
-            <graphic>
-              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                  <Image url="refresh.png" />
-                </image>
-              </ImageView>
-            </graphic>
-
-          </Button>
             <Button fx:id="graf" mnemonicParsing="false" text="grafico" onAction="#graf">
                     <graphic>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
